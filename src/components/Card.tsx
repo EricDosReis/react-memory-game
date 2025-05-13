@@ -8,7 +8,14 @@ const STYLES = {
   back: "rotate-y-180 border-purple-200 bg-white",
 };
 
-const Card = () => {
+type CardProps = {
+  id: number;
+  emoji: string;
+  isFlipped: boolean;
+  isMatched: boolean;
+};
+
+const Card = ({ emoji }: CardProps) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleClick = () => {
@@ -31,7 +38,9 @@ const Card = () => {
           <Sparkles className="h-6 w-6 text-white" />
         </div>
 
-        {isFlipped && <div className={cn(STYLES.base, STYLES.back)}>🍬</div>}
+        {isFlipped && (
+          <div className={cn(STYLES.base, STYLES.back)}>{emoji}</div>
+        )}
       </div>
     </button>
   );
