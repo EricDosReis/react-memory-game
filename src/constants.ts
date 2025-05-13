@@ -1,3 +1,5 @@
+import { Clock, MousePointerClick } from "lucide-react";
+
 const EMOJIS = ["🍭", "🍬", "🍫", "🧁", "🍩", "🍪"] as const;
 
 const CARDS = [...EMOJIS, ...EMOJIS]
@@ -9,4 +11,17 @@ const CARDS = [...EMOJIS, ...EMOJIS]
     isMatched: false,
   }));
 
-export { CARDS };
+const SCORE_ITEMS = [
+  {
+    icon: MousePointerClick,
+    label: "Moves",
+    color: "text-yellow-400",
+  },
+  {
+    icon: Clock,
+    label: "Time",
+    color: "text-blue-400",
+  },
+];
+
+export { CARDS, SCORE_ITEMS };
