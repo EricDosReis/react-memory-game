@@ -10,7 +10,7 @@ type ScoreBoardProps = {
 
 const ScoreBoard = ({ moves, time, onRestart }: ScoreBoardProps) => {
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-4 rounded-xl bg-blue-100 p-4">
+    <div className="flex w-full flex-col items-center justify-center gap-4 rounded-xl bg-blue-100 p-4 sm:w-auto sm:flex-row sm:gap-8">
       {SCORE_ITEMS.map(({ icon, label, color }) => (
         <ScoreBoardItem
           key={label}

@@ -8,4 +8,6 @@
 
   --color-blue-100: #0a0c21;
   --color-blue-200: #000010;
+
+  --breakpoint-xs: 375px;
 }

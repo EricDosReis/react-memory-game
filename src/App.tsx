@@ -12,7 +12,7 @@ const App = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-blue-200">
+    <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-blue-200 p-4 sm:gap-8 sm:p-8">
       <ScoreBoard moves={0} time={0} onRestart={() => {}} />
 
       <Board />
