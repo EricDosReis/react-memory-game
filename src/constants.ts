@@ -1,4 +1,4 @@
-import { Clock, MousePointerClick } from "lucide-react";
+import { Brain, Clock, MousePointerClick, Sparkles, Zap } from "lucide-react";
 
 const EMOJIS = ["🍭", "🍬", "🍫", "🧁", "🍩", "🍪"] as const;
 
@@ -10,6 +10,27 @@ const CARDS = [...EMOJIS, ...EMOJIS]
     isFlipped: false,
     isMatched: false,
   }));
+
+const DIFFICUTIES = [
+  {
+    label: "Easy",
+    value: "easy",
+    icon: Sparkles,
+    color: "from-green-400 to-emerald-500",
+  },
+  {
+    label: "Medium",
+    value: "medium",
+    icon: Brain,
+    color: "from-blue-400 to-indigo-500",
+  },
+  {
+    label: "Hard",
+    value: "hard",
+    icon: Zap,
+    color: "from-purple-400 to-purple-700",
+  },
+];
 
 const SCORE_ITEMS = [
   {
@@ -24,4 +45,4 @@ const SCORE_ITEMS = [
   },
 ];
 
-export { CARDS, SCORE_ITEMS };
+export { CARDS, DIFFICUTIES, SCORE_ITEMS };
