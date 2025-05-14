@@ -1,9 +1,11 @@
-import { DIFFICUTIES } from "@/constants";
+import { motion } from "motion/react";
+
+import { ANIMATIONS, DIFFICUTIES } from "@/constants";
 import { cn } from "@/lib/utils";
 
 const DifficultySelector = () => {
   return (
-    <div className="flex w-full flex-col gap-6">
+    <motion.div {...ANIMATIONS.fadeInUp} className="flex w-full flex-col gap-6">
       <h2 className="mb-2 text-center text-2xl font-bold text-white sm:mb-4 sm:text-3xl">
         Select Difficulty
       </h2>
@@ -24,7 +26,7 @@ const DifficultySelector = () => {
           </button>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -5,10 +5,11 @@ import { DifficultySelector } from "@/components/DifficultySelector";
 import { Layout } from "@/components/Layout";
 import { Modal } from "@/components/Modal";
 import { ScoreBoard } from "@/components/ScoreBoard";
+import { AnimatePresence } from "motion/react";
 
 const App = () => {
   const [showModal, setShowModal] = useState(true);
-  const difficulty = null;
+  const difficulty = "easy";
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -28,7 +29,9 @@ const App = () => {
 
       <Board />
 
-      {showModal && <Modal moves={0} time={0} onRestart={handleCloseModal} />}
+      <AnimatePresence>
+        {showModal && <Modal moves={0} time={0} onRestart={handleCloseModal} />}
+      </AnimatePresence>
     </Layout>
   );
 };

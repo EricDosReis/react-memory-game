@@ -1,5 +1,21 @@
 import { Brain, Clock, MousePointerClick, Sparkles, Zap } from "lucide-react";
 
+const ANIMATIONS = {
+  fadeInUp: {
+    initial: { opacity: 0, y: 40 },
+    animate: { opacity: 1, y: 0 },
+  },
+  fadeInDown: {
+    initial: { opacity: 0, y: -40 },
+    animate: { opacity: 1, y: 0 },
+  },
+  fadeInUpFadeOutDown: {
+    initial: { opacity: 0, y: 40 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: 40 },
+  },
+} as const;
+
 const EMOJIS = ["🍭", "🍬", "🍫", "🧁", "🍩", "🍪"] as const;
 
 const CARDS = [...EMOJIS, ...EMOJIS]
@@ -45,4 +61,4 @@ const SCORE_ITEMS = [
   },
 ];
 
-export { CARDS, DIFFICUTIES, SCORE_ITEMS };
+export { ANIMATIONS, CARDS, DIFFICUTIES, SCORE_ITEMS };

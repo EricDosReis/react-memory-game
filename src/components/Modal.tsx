@@ -1,3 +1,7 @@
+import { motion } from "motion/react";
+
+import { ANIMATIONS } from "@/constants";
+
 type ModalProps = {
   moves: number;
   time: number;
@@ -7,7 +11,10 @@ type ModalProps = {
 const Modal = ({ moves, time, onRestart }: ModalProps) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
-      <div className="max-w-sm rounded-xl bg-white p-6 text-center">
+      <motion.div
+        {...ANIMATIONS.fadeInUpFadeOutDown}
+        className="max-w-sm rounded-xl bg-white p-6 text-center"
+      >
         <h2 className="mb-4 text-2xl font-bold sm:text-3xl">
           🎉 Congratulations! 🎉
         </h2>
@@ -23,7 +30,7 @@ const Modal = ({ moves, time, onRestart }: ModalProps) => {
         >
           Play Again
         </button>
-      </div>
+      </motion.div>
     </div>
   );
 };
