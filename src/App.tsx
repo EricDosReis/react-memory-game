@@ -7,9 +7,7 @@ import { AnimatePresence } from "motion/react";
 import { useMemoryGame } from "./hooks/use-memory-game";
 
 const App = () => {
-  const { cards, handleCardClick, resetGame } = useMemoryGame();
-
-  console.log(cards);
+  const { cards, handleCardClick, resetGame, moves } = useMemoryGame();
 
   const showModal = false;
   const difficulty = "easy";
@@ -28,12 +26,14 @@ const App = () => {
 
   return (
     <Layout>
-      <ScoreBoard moves={0} time={0} onRestart={handleRestart} />
+      <ScoreBoard moves={moves} time={0} onRestart={handleRestart} />
 
       <Board cards={cards} onCardClick={handleCardClick} />
 
       <AnimatePresence>
-        {showModal && <Modal moves={0} time={0} onRestart={handleRestart} />}
+        {showModal && (
+          <Modal moves={moves} time={0} onRestart={handleRestart} />
+        )}
       </AnimatePresence>
     </Layout>
   );

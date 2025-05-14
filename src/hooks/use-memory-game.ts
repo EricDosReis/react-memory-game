@@ -7,6 +7,7 @@ import { createShuffledCards } from "@/utils/create-shuffled-cards";
 const useMemoryGame = () => {
   const [cards, setCards] = useState<Card[]>([]);
   const [flippedCards, setFlippedCards] = useState<Card[]>([]);
+  const [moves, setMoves] = useState(0);
 
   const initializeGame = () => {
     setCards(createShuffledCards());
@@ -33,6 +34,8 @@ const useMemoryGame = () => {
     setFlippedCards(newFlippedCards);
 
     if (newFlippedCards.length === MAX_MOVEMENTS) {
+      setMoves((previousMoves) => previousMoves + 1);
+
       const [firstCard, secondCard] = newFlippedCards;
       const isMatched = firstCard.emoji === secondCard.emoji;
 
@@ -57,6 +60,7 @@ const useMemoryGame = () => {
     cards,
     handleCardClick,
     resetGame: initializeGame,
+    moves,
   };
 };
 
