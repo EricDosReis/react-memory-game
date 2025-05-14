@@ -1,13 +1,14 @@
+import { AnimatePresence } from "motion/react";
+
 import { Board } from "@/components/Board";
 import { DifficultySelector } from "@/components/DifficultySelector";
 import { Layout } from "@/components/Layout";
 import { Modal } from "@/components/Modal";
 import { ScoreBoard } from "@/components/ScoreBoard";
-import { AnimatePresence } from "motion/react";
 import { useMemoryGame } from "./hooks/use-memory-game";
 
 const App = () => {
-  const { cards, handleCardClick, resetGame, moves } = useMemoryGame();
+  const { cards, handleCardClick, resetGame, moves, time } = useMemoryGame();
 
   const showModal = false;
   const difficulty = "easy";
@@ -26,13 +27,13 @@ const App = () => {
 
   return (
     <Layout>
-      <ScoreBoard moves={moves} time={0} onRestart={handleRestart} />
+      <ScoreBoard moves={moves} time={time} onRestart={handleRestart} />
 
       <Board cards={cards} onCardClick={handleCardClick} />
 
       <AnimatePresence>
         {showModal && (
-          <Modal moves={moves} time={0} onRestart={handleRestart} />
+          <Modal moves={moves} time={time} onRestart={handleRestart} />
         )}
       </AnimatePresence>
     </Layout>

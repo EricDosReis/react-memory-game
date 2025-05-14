@@ -1,19 +1,27 @@
 import { useEffect, useState } from "react";
 
 import { CARDS_DISPLAY_IN_MS, MAX_MOVEMENTS } from "@/constants";
+import { createShuffledCards } from "@/lib/create-shuffled-cards";
 import { Card } from "@/types";
-import { createShuffledCards } from "@/utils/create-shuffled-cards";
+import { useTimer } from "./use-timer";
 
 const useMemoryGame = () => {
+  const [gameStarted, setGameStarted] = useState(false);
   const [cards, setCards] = useState<Card[]>([]);
   const [flippedCards, setFlippedCards] = useState<Card[]>([]);
   const [moves, setMoves] = useState(0);
+
+  const { time } = useTimer(gameStarted);
 
   const initializeGame = () => {
     setCards(createShuffledCards());
   };
 
   const handleCardClick = (id: number) => {
+    if (!gameStarted) {
+      setGameStarted(true);
+    }
+
     const clickedCard = cards.find((card) => card.id === id)!;
 
     if (
@@ -61,6 +69,7 @@ const useMemoryGame = () => {
     handleCardClick,
     resetGame: initializeGame,
     moves,
+    time,
   };
 };
 

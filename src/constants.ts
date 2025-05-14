@@ -2,6 +2,10 @@ import { Brain, Clock, MousePointerClick, Sparkles, Zap } from "lucide-react";
 
 const MAX_MOVEMENTS = 2;
 
+const ONE_SECOND_IN_MS = 1000;
+
+const ONE_MINUTE_IN_SECONDS = 60;
+
 const CARDS_DISPLAY_IN_MS = 700;
 
 const ANIMATIONS = {
@@ -62,5 +66,7 @@ export {
   DIFFICUTIES,
   EMOJIS,
   MAX_MOVEMENTS,
+  ONE_MINUTE_IN_SECONDS,
+  ONE_SECOND_IN_MS,
   SCORE_ITEMS,
 };
