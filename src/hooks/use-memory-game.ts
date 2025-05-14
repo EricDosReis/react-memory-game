@@ -1,20 +1,27 @@
 import { useEffect, useState } from "react";
 
 import { CARDS_DISPLAY_IN_MS, MAX_MOVEMENTS } from "@/constants";
+import { checkGameCompletion } from "@/lib/check-game-completion";
 import { createShuffledCards } from "@/lib/create-shuffled-cards";
 import { Card } from "@/types";
 import { useTimer } from "./use-timer";
 
 const useMemoryGame = () => {
   const [gameStarted, setGameStarted] = useState(false);
+  const [gameCompleted, setGameCompleted] = useState(false);
   const [cards, setCards] = useState<Card[]>([]);
   const [flippedCards, setFlippedCards] = useState<Card[]>([]);
   const [moves, setMoves] = useState(0);
 
-  const { time } = useTimer(gameStarted);
+  const { time, resetTimer } = useTimer(gameStarted && !gameCompleted);
 
   const initializeGame = () => {
     setCards(createShuffledCards());
+    setGameStarted(false);
+    setGameCompleted(false);
+    setFlippedCards([]);
+    setMoves(0);
+    resetTimer();
   };
 
   const handleCardClick = (id: number) => {
@@ -48,7 +55,7 @@ const useMemoryGame = () => {
       const isMatched = firstCard.emoji === secondCard.emoji;
 
       setTimeout(() => {
-        const updatedCard = cards.map((card) => {
+        const updatedCards = cards.map((card) => {
           if (card.id === firstCard.id || card.id === secondCard.id) {
             return { ...card, isFlipped: isMatched, isMatched };
           }
@@ -56,8 +63,12 @@ const useMemoryGame = () => {
           return card;
         });
 
-        setCards(updatedCard);
+        setCards(updatedCards);
         setFlippedCards([]);
+
+        if (isMatched && checkGameCompletion(updatedCards)) {
+          setGameCompleted(true);
+        }
       }, CARDS_DISPLAY_IN_MS);
     }
   };
@@ -66,6 +77,7 @@ const useMemoryGame = () => {
 
   return {
     cards,
+    gameCompleted,
     handleCardClick,
     resetGame: initializeGame,
     moves,

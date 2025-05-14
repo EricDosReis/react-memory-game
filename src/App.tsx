@@ -6,11 +6,14 @@ import { Layout } from "@/components/Layout";
 import { Modal } from "@/components/Modal";
 import { ScoreBoard } from "@/components/ScoreBoard";
 import { useMemoryGame } from "./hooks/use-memory-game";
+import { formatTime } from "./lib/format-time";
 
 const App = () => {
-  const { cards, handleCardClick, resetGame, moves, time } = useMemoryGame();
+  const { cards, gameCompleted, handleCardClick, resetGame, moves, time } =
+    useMemoryGame();
 
-  const showModal = false;
+  const formattedTime = formatTime(time);
+
   const difficulty = "easy";
 
   const handleRestart = () => {
@@ -27,13 +30,17 @@ const App = () => {
 
   return (
     <Layout>
-      <ScoreBoard moves={moves} time={time} onRestart={handleRestart} />
+      <ScoreBoard
+        moves={moves}
+        time={formattedTime}
+        onRestart={handleRestart}
+      />
 
       <Board cards={cards} onCardClick={handleCardClick} />
 
       <AnimatePresence>
-        {showModal && (
-          <Modal moves={moves} time={time} onRestart={handleRestart} />
+        {gameCompleted && (
+          <Modal moves={moves} time={formattedTime} onRestart={handleRestart} />
         )}
       </AnimatePresence>
     </Layout>

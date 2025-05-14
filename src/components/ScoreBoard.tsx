@@ -1,12 +1,11 @@
 import { ANIMATIONS, SCORE_ITEMS } from "@/constants";
-import { formatTime } from "@/lib/format-time";
 import { RotateCcw } from "lucide-react";
 import { motion } from "motion/react";
 import { ScoreBoardItem } from "./ScoreBoardItem";
 
 type ScoreBoardProps = {
   moves: number;
-  time: number;
+  time: string;
   onRestart: () => void;
 };
 
@@ -22,7 +21,7 @@ const ScoreBoard = ({ moves, time, onRestart }: ScoreBoardProps) => {
           icon={icon}
           label={label}
           color={color}
-          value={label === "Moves" ? moves : formatTime(time)}
+          value={label === "Moves" ? moves : time}
         />
       ))}
 

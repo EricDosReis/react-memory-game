@@ -1,11 +1,10 @@
 import { motion } from "motion/react";
 
 import { ANIMATIONS } from "@/constants";
-import { formatTime } from "@/lib/format-time";
 
 type ModalProps = {
   moves: number;
-  time: number;
+  time: string;
   onRestart: () => void;
 };
 
@@ -21,8 +20,8 @@ const Modal = ({ moves, time, onRestart }: ModalProps) => {
         </h2>
 
         <p className="mb-6 text-lg">
-          You completed the game in <br /> <b>{moves} moves</b>{" "}
-          <b>and {formatTime(time)}</b>.
+          You completed the game in <br /> <b>{moves} moves</b> and{" "}
+          <b>{time}</b>.
         </p>
 
         <button
