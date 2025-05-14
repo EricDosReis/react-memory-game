@@ -1,5 +1,9 @@
 import { Brain, Clock, MousePointerClick, Sparkles, Zap } from "lucide-react";
 
+const MAX_MOVEMENTS = 2;
+
+const CARDS_DISPLAY_IN_MS = 700;
+
 const ANIMATIONS = {
   fadeInUp: {
     initial: { opacity: 0, y: 40 },
@@ -17,15 +21,6 @@ const ANIMATIONS = {
 } as const;
 
 const EMOJIS = ["🍭", "🍬", "🍫", "🧁", "🍩", "🍪"] as const;
-
-const CARDS = [...EMOJIS, ...EMOJIS]
-  .sort(() => Math.random() - 0.5)
-  .map((emoji, index) => ({
-    id: index,
-    emoji,
-    isFlipped: false,
-    isMatched: false,
-  }));
 
 const DIFFICUTIES = [
   {
@@ -61,4 +56,11 @@ const SCORE_ITEMS = [
   },
 ];
 
-export { ANIMATIONS, CARDS, DIFFICUTIES, SCORE_ITEMS };
+export {
+  ANIMATIONS,
+  CARDS_DISPLAY_IN_MS,
+  DIFFICUTIES,
+  EMOJIS,
+  MAX_MOVEMENTS,
+  SCORE_ITEMS,
+};
