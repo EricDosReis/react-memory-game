@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import { CARDS_DISPLAY_IN_MS, MAX_MOVEMENTS } from "@/constants";
 import { checkGameCompletion } from "@/lib/check-game-completion";
 import { createShuffledCards } from "@/lib/create-shuffled-cards";
-import { Card } from "@/types";
+import type { Card, Difficulty } from "@/types";
 import { useTimer } from "./use-timer";
 
-const useMemoryGame = () => {
+const useMemoryGame = (difficulty: Difficulty) => {
   const [gameStarted, setGameStarted] = useState(false);
   const [gameCompleted, setGameCompleted] = useState(false);
   const [cards, setCards] = useState<Card[]>([]);
@@ -16,7 +16,7 @@ const useMemoryGame = () => {
   const { time, resetTimer } = useTimer(gameStarted && !gameCompleted);
 
   const initializeGame = () => {
-    setCards(createShuffledCards());
+    setCards(createShuffledCards(difficulty));
     setGameStarted(false);
     setGameCompleted(false);
     setFlippedCards([]);
@@ -73,7 +73,7 @@ const useMemoryGame = () => {
     }
   };
 
-  useEffect(initializeGame, []);
+  useEffect(initializeGame, [difficulty, resetTimer]);
 
   return {
     cards,

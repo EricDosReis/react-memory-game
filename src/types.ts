@@ -5,4 +5,6 @@ type Card = {
   isMatched: boolean;
 };
 
-export type { Card };
+type Difficulty = "easy" | "medium" | "hard";
+
+export type { Card, Difficulty };

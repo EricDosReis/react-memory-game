@@ -1,14 +1,18 @@
-import { EMOJIS } from "@/constants";
+import { EMOJIS, PAIR_COUNTS } from "@/constants";
+import type { Difficulty } from "@/types";
 
-const createShuffledCards = () => {
-  return [...EMOJIS, ...EMOJIS]
+const createShuffledCards = (difficulty: Difficulty) => {
+  const pairs = PAIR_COUNTS[difficulty];
+  const gameEmojis = [...EMOJIS]
     .sort(() => Math.random() - 0.5)
-    .map((emoji, index) => ({
-      id: index,
-      emoji,
-      isFlipped: false,
-      isMatched: false,
-    }));
+    .slice(0, pairs);
+
+  return [...gameEmojis, ...gameEmojis].map((emoji, index) => ({
+    id: index,
+    emoji,
+    isFlipped: false,
+    isMatched: false,
+  }));
 };
 
 export { createShuffledCards };

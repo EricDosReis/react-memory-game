@@ -25,7 +25,7 @@ const Modal = ({ moves, time, onRestart }: ModalProps) => {
         </p>
 
         <button
-          className="bg-pink rounded-lg px-6 py-3 font-medium text-white transition-opacity hover:opacity-80"
+          className="bg-pink cursor-pointer rounded-lg px-6 py-3 font-medium text-white transition-opacity hover:opacity-80"
           onClick={onRestart}
         >
           Play Again
