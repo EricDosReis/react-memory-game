@@ -1,6 +1,6 @@
 # React Memory game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Using React + Vite, TypeScript, Tailwind v4 and Motion.
 
 ## Running
 
